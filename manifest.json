@@ -1,0 +1,39 @@
+{
+	"manifest_version": 2,
+	"name": "Youtube Auto HD",
+	"description": "Open source Youtube auto hd selector. Automatically selects the best available hd quality or your preferred quality.",
+	"version": "1.0.0",
+	"author": "Sameer Nyaupane",
+
+	"icons": { 
+		"16": "youtubehd-16.png",
+    "48": "youtubehd-48.png",
+    "128": "youtubehd-128.png"
+  },
+
+  "browser_action": {
+    "default_title": "Youtube Auto HD",
+    "default_icon": "youtubehd-16.png",
+    "default_popup": "popup.html"
+  },
+
+  "background": {
+      "scripts": [
+        "background.js"
+      ]
+  },
+
+	"content_scripts": [{
+		"matches": ["*://www.youtube.com/watch?*"],
+		"exclude_globs": [
+			"*/embed/*",
+			"*/tv#/*",
+			"*/tv/*"
+		],
+		"all_frames": true,
+		"js": ["content.js"],
+		"run_at": "document_start"
+	}],
+
+	"permissions": ["storage", "*://www.youtube.com/*"]
+}

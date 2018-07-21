@@ -1,0 +1,37 @@
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="popup.css">
+</head>
+<body>
+  <header>Youtube Auto HD</header>
+
+  <section>
+    <span>Preferred Quality</span>
+    <select id="preferred-quality">
+      <option value="best-available">Best available quality</option>
+      <option value="4320p">8k - 4320p</option>
+      <option value="2160p">4k - 2160p</option>
+      <option value="1440p">HD - 1440p</option>
+      <option value="1080p">HD - 1080p</option>
+      <option value="720p">HD - 720p</option>
+      <option value="480p">SD - 480p</option>
+      <option value="360p">SD - 360p</option>
+      <option value="240p">SD - 240p</option>
+      <option value="144p">SD - 144p</option>
+      <option value="Auto">Auto mode</option>
+    </select>
+  </section>
+
+  <section>
+    <span>Theater Mode</span>
+    <div class="preload">
+      <label class="switcher">
+        <input class="toggle" type="checkbox" id="theater-mode">
+        <div class="switcher__indicator"></div>
+      </label>
+    </div>
+  </section>
+  
+  <script src="popup.js"></script>
+</body>
+</html>

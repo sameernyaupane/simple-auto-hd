@@ -1,0 +1,85 @@
+html, body {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+body {
+  width: 160px;
+  text-align: center;
+}
+
+header {
+  color: #bbb;
+  padding: 2px;
+  margin:0px auto; 
+  margin-bottom: 4px;
+  background-color: #444; 
+}
+
+section {
+  margin: 4px;
+}
+
+select {
+  margin: 4px;
+}
+
+.show-after-transitions {
+  visibility: hidden;
+}
+
+.switcher {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  padding-left: 56px;
+  height: 15px;
+  line-height: 15px;
+  margin: 5px;
+  font-size: 30px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.switcher input {
+  display: none;
+}
+
+.switcher__indicator::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 16px;
+  width: 16px;
+  background-color: #d5d5d5;
+  border-radius: 12px;
+}
+
+.switcher__indicator::before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 0;
+  width: 56px;
+  height: 4px;
+  background-color: #d5d5d5;
+  border-radius: 12px;
+}
+
+input.toggle:checked + .switcher__indicator::after {
+  background-color: #29ce9a;
+  transform: translateX(40px);
+}
+
+input.toggle:checked + .switcher__indicator::before {
+  background-color: #29ce9a;
+}
+
+input.toggle:disabled + .switcher__indicator::after, input:disabled + .switcher__indicator::before {
+  background-color: #e5e5e5;
+}
