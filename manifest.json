@@ -2,7 +2,7 @@
 	"manifest_version": 2,
 	"name": "Youtube Auto HD",
 	"description": "Open source Youtube auto hd selector. Automatically selects the best available hd quality or your preferred quality.",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"author": "Sameer Nyaupane",
 
 	"icons": { 
