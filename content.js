@@ -1,7 +1,9 @@
 (function() {
   document.addEventListener('yt-navigate-finish', function(event) {
-    toggleTheaterMode();
-    selectPreferredQuality();
+    if(location.pathname === '/watch') {
+      toggleTheaterMode();
+      selectPreferredQuality();
+    }
   });
 
   var toggleTheaterMode = function() { 

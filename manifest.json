@@ -24,7 +24,7 @@
   },
 
 	"content_scripts": [{
-		"matches": ["*://www.youtube.com/watch?*"],
+		"matches": ["*://www.youtube.com/*"],
 		"exclude_globs": [
 			"*/embed/*",
 			"*/tv#/*",
