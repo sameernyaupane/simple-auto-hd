@@ -18,7 +18,7 @@
 
       var sizeButton = document.getElementsByClassName('ytp-size-button')[0];
 
-      var sizeButtonHasTheaterModeTitle = sizeButton.getAttribute('title') === 'Theater mode';
+      var sizeButtonHasTheaterModeTitle = sizeButton.getAttribute('title') === 'Theater mode (t)';
 
       if(theaterMode && sizeButtonHasTheaterModeTitle) {
         sizeButton.click(); 
