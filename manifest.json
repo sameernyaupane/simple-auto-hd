@@ -1,8 +1,8 @@
 {
 	"manifest_version": 2,
 	"name": "Youtube Auto HD",
-	"description": "Open source. Youtube HD quality selector. Up to 8k/4k (30fps/60fps) supported",
-	"version": "1.0.2",
+	"description": "Open source. Youtube HD quality selector. Up to 8k/4k (30fps/50fps/60fps) supported",
+	"version": "1.0.3",
 	"author": "Sameer Nyaupane",
 
 	"icons": { 
