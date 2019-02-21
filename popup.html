@@ -1,25 +1,28 @@
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="popup.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 </head>
-<body>
-  <header>Youtube Auto HD</header>
+<body style="background-color: rgb(255, 255, 255);">
+  <header><h3>YouTube Auto HD & More</h3></header>
 
   <section>
     <span>Preferred Quality</span>
-    <select id="preferred-quality">
-      <option value="best-available">Best available quality</option>
-      <option value="4320p">8k - 4320p</option>
-      <option value="2160p">4k - 2160p</option>
-      <option value="1440p">HD - 1440p</option>
-      <option value="1080p">HD - 1080p</option>
-      <option value="720p">HD - 720p</option>
-      <option value="480p">SD - 480p</option>
-      <option value="360p">SD - 360p</option>
-      <option value="240p">SD - 240p</option>
-      <option value="144p">SD - 144p</option>
-      <option value="Auto">Auto mode</option>
-    </select>
+    <span class="custom-dropdown big">
+      <select id="preferred-quality">
+        <option value="best-available">Best available quality</option>
+        <option value="4320p">8k - 4320p</option>
+        <option value="2160p">4k - 2160p</option>
+        <option value="1440p">HD - 1440p</option>
+        <option value="1080p">HD - 1080p</option>
+        <option value="720p">HD - 720p</option>
+        <option value="480p">SD - 480p</option>
+        <option value="360p">SD - 360p</option>
+        <option value="240p">SD - 240p</option>
+        <option value="144p">SD - 144p</option>
+        <option value="Auto">Auto mode</option>
+      </select>
+    </span>
   </section>
 
   <section>
@@ -32,14 +35,23 @@
     </div>
   </section>
 
+  <hr>
+
   <section>
-    <a target="_blank" href="https://opensourceaddons.com/addons/youtube-auto-hd/">
+    <a class="anchors" target="_blank" href="https://opensourceaddons.com/addons/youtube-auto-hd/">
       Official Website Link
     </a>
     <br><br>
-    <a target="_blank" href="https://chrome.google.com/webstore/detail/youtube-auto-hd/jamafpflleegkoebnonmglpgocndhmfg">
+    <a class="anchors" target="_blank" href="https://chrome.google.com/webstore/detail/youtube-auto-hd/jamafpflleegkoebnonmglpgocndhmfg">
       Official Chrome Web Store Link
     </a>
+  </section>
+
+  <hr>
+
+  <section>
+    <span class="color-picker"></span> 
+    <i class="fa fa-moon" style="color: #282828"></i>
   </section>
   
   <script src="popup.js"></script>
