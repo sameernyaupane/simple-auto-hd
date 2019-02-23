@@ -22,7 +22,7 @@ hr {
 
 header {
   color: #fff;
-  padding: 12px 0 12px 0;
+  padding: 8px 0 8px 0;
   margin:0px auto; 
   margin-bottom: 4px;
   background-color: #263238; 
@@ -87,16 +87,16 @@ select {
 }
 
 input.toggle:checked + .switcher__indicator::after {
-  background-color: #29ce9a;
+  background-color: #1abc9c;
   transform: translateX(40px);
 }
 
 input.toggle:checked + .switcher__indicator::before {
-  background-color: #29ce9a;
+  background-color: #1abc9c;
 }
 
 input.toggle:disabled + .switcher__indicator::after, input:disabled + .switcher__indicator::before {
-  background-color: #e5e5e5;
+  background-color: #1abc9c;
 }
 
 

@@ -1,6 +1,10 @@
-(function() {  
-  var preferredQualityElement = document.getElementById('preferred-quality');
+(function() {
+  var version = chrome.runtime.getManifest().version; 
   var theaterModeElement = document.getElementById('theater-mode');
+  var preferredQualityElement = document.getElementById('preferred-quality');
+
+  var headerElem = document.querySelector('header');
+  headerElem.innerHTML += 'v' + version;
 
   chrome.storage.sync.get(['preferredQuality'], function(result) { 
     if(result.preferredQuality !== undefined) {
@@ -13,14 +17,6 @@
       theaterModeElement.checked = result.theaterMode; 
     }
   });
-  
-  /*setTimeout(function() { 
-    var addedStyle = document.createElement("style");
-    addedStyle.innerHTML =
-     '.switcher__indicator::after { transition: all .3s ease}';
-
-    document.head.appendChild(addedStyle);
-  }, 5);*/
 
   preferredQualityElement.onchange = function() {
     var selectedString = preferredQualityElement.options[preferredQualityElement.selectedIndex].value;
@@ -51,34 +47,31 @@
   });
 
   colorPickerElem.addEventListener("click", function(event) {
-    var background = event.target.style.background;
+    var backgroundColor = event.target.style.background;
 
+    changeThemeColor(backgroundColor);
+
+    chrome.storage.sync.set({themeColor: backgroundColor}, function() {});
+  });
+
+  function changeThemeColor(backgroundColor) {
     var selectElem = document.querySelector('.custom-dropdown select');
-    selectElem.style.background = background;
+    selectElem.style.background = backgroundColor;
 
     var switcherNewStyle = document.createElement("style");
 
     switcherNewStyle.innerHTML =
-     '.switcher__indicator::before { background-color: ' + background + ' !important;}';
+     '.switcher__indicator::before { background-color: ' + backgroundColor + ' !important;}';
 
     switcherNewStyle.innerHTML +=
-     ' .switcher__indicator::after { background-color: ' + background + ' !important;}';
+     ' .switcher__indicator::after { background-color: ' + backgroundColor + ' !important;}';
 
     document.head.appendChild(switcherNewStyle);
-  });
+  }
 
   var bodyElem         = document.querySelector('body');
   var backgroundToggle = document.querySelector('.fa-moon');
   var anchor           = document.querySelectorAll('.anchors');
-
-  //Set theme mode at runtime
-  chrome.storage.sync.get(['darkMode'], function(result) { 
-    if(result.darkMode !== undefined) {
-      if(result.darkMode) {
-        setDarkMode();
-      }
-    }
-  });
 
   backgroundToggle.addEventListener("click", function(event) {
     if(bodyElem.style.backgroundColor == 'rgb(255, 255, 255)') {
@@ -108,4 +101,23 @@
       element.style.color = '#0000EE';
     });
   }
+
+  //Set dark mode at runtime
+  chrome.storage.sync.get(['darkMode'], function(result) { 
+    if(result.darkMode !== undefined) {
+      if(result.darkMode) {
+        setDarkMode();
+      }
+    }
+  });
+
+  //Set theme mode at runtime
+  chrome.storage.sync.get(['themeColor'], function(result) { 
+    if(result.themeColor !== undefined) {
+      if(result.themeColor) {
+        changeThemeColor(result.themeColor);
+      }
+    }
+  });
+
 })();

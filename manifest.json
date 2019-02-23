@@ -2,7 +2,7 @@
 	"manifest_version": 2,
 	"name": "YouTube Auto HD & More (Open Source)",
 	"description": "Youtube HD quality selector. Theater mode. Right click Search in Youtube. Up to 8k/4k (60fps/50fps/48fps/30fps) supported",
-	"version": "1.0.4",
+	"version": "1.0.5",
 	"author": "Sameer Nyaupane",
 
 	"icons": { 
