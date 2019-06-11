@@ -10,6 +10,7 @@ body {
   text-align: center;
   font-size: 14px;
   cursor: default;
+  background-color: rgb(255, 255, 255);
 }
 
 a {
@@ -35,6 +36,12 @@ header h3 {
 
 section {
   margin: 6 4 6 4px;
+}
+
+section i {
+  cursor: pointer;
+  color: #282828;
+  font-size: 20px;
 }
 
 select {

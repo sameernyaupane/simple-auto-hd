@@ -70,7 +70,7 @@
   }
 
   var bodyElem         = document.querySelector('body');
-  var backgroundToggle = document.querySelector('.fa-moon');
+  var backgroundToggle = document.getElementById('moon');
   var anchor           = document.querySelectorAll('.anchors');
 
   backgroundToggle.addEventListener("click", function(event) {
