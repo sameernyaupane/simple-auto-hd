@@ -1,19 +1,19 @@
 {
 	"manifest_version": 2,
-	"name": "YouTube Auto HD & More (Open Source)",
-	"description": "Youtube HD quality selector. Theater mode. Right click Search in Youtube. Up to 8k/4k (60fps/50fps/48fps/30fps) supported",
-	"version": "1.0.6",
+	"name": "Simple Auto HD (Open Source)",
+	"description": "Simple Auto HD quality selector for YouTube. Up to 8k/4k (60fps/50fps/48fps/30fps) supported. Theater mode. Right click Search in Youtube.",
+	"version": "2.0.1",
 	"author": "Sameer Nyaupane",
 
 	"icons": { 
-		"16": "youtubehd-16.png",
-    "48": "youtubehd-48.png",
-    "128": "youtubehd-128.png"
+		"16": "sahd-16.png",
+    "48": "sahd-48.png",
+    "128": "sahd-128.png"
   },
 
   "browser_action": {
-    "default_title": "YouTube Auto HD & More",
-    "default_icon": "youtubehd-16.png",
+    "default_title": "Simple Auto HD",
+    "default_icon": "sahd-16.png",
     "default_popup": "popup.html"
   },
 

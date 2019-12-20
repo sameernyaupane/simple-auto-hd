@@ -1,12 +1,12 @@
 chrome.runtime.onInstalled.addListener(function(details) {
   if (details.reason == "install") {
     chrome.tabs.create({
-        url: 'https://opensourceaddons.com/addons/youtube-auto-hd/?installed'
+        url: 'https://github.com/sameernyaupane/simple-auto-hd'
     });
   } else if (details.reason == "update") {
     var version = chrome.runtime.getManifest().version;
     chrome.tabs.create({
-        url: 'https://opensourceaddons.com/addons/youtube-auto-hd/?v=' + version
+        url: 'https://github.com/sameernyaupane/simple-auto-hd'
     });
   }
 });

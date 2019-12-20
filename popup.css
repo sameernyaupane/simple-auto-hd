@@ -10,11 +10,12 @@ body {
   text-align: center;
   font-size: 14px;
   cursor: default;
-  background-color: rgb(255, 255, 255);
+  background-color: #37474F;
+  color: #fff;
 }
 
 a {
-  color: #0000EE;
+  color: #fff;
 }
 
 hr {
@@ -22,11 +23,9 @@ hr {
 }
 
 header {
-  color: #fff;
   padding: 8px 0 8px 0;
   margin:0px auto; 
   margin-bottom: 4px;
-  background-color: #263238; 
 }
 
 header h3 {
@@ -78,7 +77,7 @@ select {
   left: 0;
   height: 16px;
   width: 16px;
-  background-color: #1abc9c;
+  background-color: #2980b9;
   border-radius: 12px;
 }
 
@@ -89,21 +88,21 @@ select {
   left: 0;
   width: 56px;
   height: 4px;
-  background-color: #1abc9c;
+  background-color: #2980b9;
   border-radius: 12px;
 }
 
 input.toggle:checked + .switcher__indicator::after {
-  background-color: #1abc9c;
+  background-color: #2980b9;
   transform: translateX(40px);
 }
 
 input.toggle:checked + .switcher__indicator::before {
-  background-color: #1abc9c;
+  background-color: #2980b9;
 }
 
 input.toggle:disabled + .switcher__indicator::after, input:disabled + .switcher__indicator::before {
-  background-color: #1abc9c;
+  background-color: #2980b9;
 }
 
 
@@ -119,19 +118,6 @@ input.toggle:disabled + .switcher__indicator::after, input:disabled + .switcher_
   font-size: .7em;
 }
 
-.square {
-  width: 15px;
-  height: 15px;
-  margin: 0px 4px 0px 4px;
-  display: inline-block;
-  cursor: pointer;
-}
-
-.fa-moon {
-  cursor: pointer;
-  font-size: 24px;;
-}
-
 /* Custom dropdown */
 .custom-dropdown {
   position: relative;
@@ -141,7 +127,7 @@ input.toggle:disabled + .switcher__indicator::after, input:disabled + .switcher_
 }
 
 .custom-dropdown select {
-  background-color: #1abc9c;
+  background-color: #2980b9;
   color: #fff;
   font-size: 16px;
   padding: .5em;
