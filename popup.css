@@ -10,8 +10,8 @@ body {
   text-align: center;
   font-size: 14px;
   cursor: default;
-  background-color: #37474F;
-  color: #fff;
+  background-color: #262a32;
+  color: #e1e1e1;
 }
 
 a {
@@ -30,7 +30,7 @@ header {
 
 header h3 {
   margin: 0px;
-  font-size: 16px;
+  font-size: 28px;
 }
 
 section {
@@ -179,4 +179,8 @@ input.toggle:disabled + .switcher__indicator::after, input:disabled + .switcher_
 
 .custom-dropdown::after {
   color: rgba(0,0,0,.4);
+}
+
+#info {
+  color: #dcdc00;
 }

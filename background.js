@@ -10,13 +10,3 @@ chrome.runtime.onInstalled.addListener(function(details) {
     });
   }
 });
-
-chrome.contextMenus.create({
-  title: "Search YouTube for \"%s\"",
-  contexts: ["selection"],
-  onclick: function(info) {
-    chrome.tabs.create({
-        url: "https://www.youtube.com/results?search_query=" + info.selectionText
-    });
-  }
-});

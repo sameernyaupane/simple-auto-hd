@@ -1,12 +1,14 @@
 (function() {
   document.addEventListener('yt-navigate-finish', function(event) {
     if(location.pathname === '/watch') {
-      toggleTheaterMode();
-      selectPreferredQuality();
+      setTimeout(() => {
+        toggleTheaterMode();
+        selectPreferredQuality();
+      }, 1000)
     }
   });
 
-  var toggleTheaterMode = function() { 
+  var toggleTheaterMode = function() {
     chrome.storage.sync.get(['theaterMode'], function(result) { 
       updateTheaterMode(result.theaterMode); 
     });
@@ -17,13 +19,12 @@
       }
 
       var sizeButton = document.getElementsByClassName('ytp-size-button')[0];
-
       var sizeButtonHasTheaterModeTitle = sizeButton.getAttribute('title') === 'Theater mode (t)';
 
       if(theaterMode && sizeButtonHasTheaterModeTitle) {
-        sizeButton.click(); 
+        sizeButton.click();
       } else if(!theaterMode && !sizeButtonHasTheaterModeTitle) {
-        sizeButton.click(); 
+        sizeButton.click();
       }
     }
   };
