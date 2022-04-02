@@ -6,5 +6,5 @@ Please give us a review comment on the chrome web store if you found the extensi
 [Chrome Web Store](https://chrome.google.com/webstore/detail/simple-auto-hd-open-sourc/jnofiabkigekemighcdaejlpgdhmbaog)
 
 ## Issues
-If you have any issues or suggestions please comment in the chrome web store link below:
+If you have any issues or suggestions please post them here:
 [https://github.com/sameernyaupane/simple-auto-hd/issues](https://github.com/sameernyaupane/simple-auto-hd/issues)
