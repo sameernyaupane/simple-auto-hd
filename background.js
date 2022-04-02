@@ -1,12 +1,12 @@
 chrome.runtime.onInstalled.addListener(function(details) {
   if (details.reason == "install") {
     chrome.tabs.create({
-        url: 'https://github.com/sameernyaupane/simple-auto-hd'
+        url: 'https://sameernyaupane.github.io/simple-auto-hd/installation'
     });
   } else if (details.reason == "update") {
     var version = chrome.runtime.getManifest().version;
     chrome.tabs.create({
-        url: 'https://github.com/sameernyaupane/simple-auto-hd/releases'
+        url: 'https://sameernyaupane.github.io/simple-auto-hd/updated'
     });
   }
 });

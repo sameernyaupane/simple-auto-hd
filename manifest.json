@@ -2,7 +2,7 @@
 	"manifest_version": 3,
 	"name": "Simple Auto HD (Open Source)",
 	"description": "Simple Auto HD quality selector for YouTube. Up to 8k/4k (60fps/50fps/48fps/30fps) supported. Theater mode.",
-	"version": "2.0.2",
+	"version": "2.0.3",
 	"author": "Sameer Nyaupane",
 
 	"icons": { 
