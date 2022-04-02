@@ -4,7 +4,7 @@ You may use the extension popup menu for settings.
 ## Leave us a review!
 
 Please give us a review comment on the chrome web store if you found the extension helpful! :)
-[https://chrome.google.com/webstore/detail/simple-auto-hd-open-sourc/jnofiabkigekemighcdaejlpgdhmbaog](Chrome Web Store)
+[Chrome Web Store](https://chrome.google.com/webstore/detail/simple-auto-hd-open-sourc/jnofiabkigekemighcdaejlpgdhmbaog)
 
 ## Issues
 If you have any issues or suggestions please comment in the chrome web store link below:
