@@ -83,38 +83,36 @@
 
       var targetItem;
 
-      if(preferredQuality === 'best-available') {
-        targetItem = document.querySelector('.ytp-quality-menu .ytp-menuitem-label');
-      } else {
-        var targetItems = document.querySelectorAll('.ytp-quality-menu .ytp-menuitem-label');
+if (preferredQuality === 'best-available') {
+  var targetItems = document.querySelectorAll('.ytp-quality-menu .ytp-menuitem-label');
 
-        var loopCounter = 0;
+  for (var i = 0; i < targetItems.length; i++) {
+    var potentialTargetItem = targetItems[i].childNodes[0].childNodes[0];
+    var quality = potentialTargetItem.innerHTML.split(' ')[0];
 
-        function findTargetItem() {
-          for (var i = 0; i < targetItems.length; i++) {
-            var potentialTargetItem = targetItems[i].childNodes[0].childNodes[0];
+    if (!quality.includes('Premium')) {
+      targetItem = potentialTargetItem;
+      break;
+    }
+  }
+} else {
+  var targetItems = document.querySelectorAll('.ytp-quality-menu .ytp-menuitem-label');
 
-            var quality = potentialTargetItem.innerHTML.split(' ')[0];
+  for (var i = 0; i < targetItems.length; i++) {
+    var potentialTargetItem = targetItems[i].childNodes[0].childNodes[0];
+    var quality = potentialTargetItem.innerHTML.split(' ')[0];
 
-            if(quality === preferredQuality) {
-              targetItem = potentialTargetItem;
-            }
-          }
+    if (quality === preferredQuality && !quality.includes('Premium')) {
+      targetItem = potentialTargetItem;
+      break;
+    }
+  }
+}
 
-          if(targetItem === undefined && loopCounter < 10) {
-            var key = qualitiesArray.indexOf(preferredQuality);
-            preferredQuality = qualitiesArray[key + 1];
-
-            loopCounter++;
-
-            return findTargetItem();
-          }
-
-          return targetItem;
-        }
-
-        targetItem = findTargetItem();
-      }
+if (targetItem === undefined) {
+  // Handle the case when no suitable non-premium quality is found
+  targetItem = document.querySelector('.ytp-quality-menu .ytp-menuitem-label');
+}
 
       targetItem.click();
     }
