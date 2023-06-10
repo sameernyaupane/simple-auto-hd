@@ -6,7 +6,7 @@ chrome.runtime.onInstalled.addListener(function(details) {
   } else if (details.reason == "update") {
     var version = chrome.runtime.getManifest().version;
     chrome.tabs.create({
-        url: 'https://sameernyaupane.github.io/simple-auto-hd/updated'
+        url: 'https://sameernyaupane.github.io/simple-auto-hd/updated?v=2.0.4'
     });
   }
 });
