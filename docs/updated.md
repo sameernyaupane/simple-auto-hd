@@ -2,7 +2,7 @@
 
 Latest version: v2.0.4
 
-Updates:
+### Updates:
 1. Added support for all international languages supported by YouTube
  Huge shoutout to [https://github.com/JensForstmann](https://github.com/JensForstmann)
  for raising the issue and sending the PR:
