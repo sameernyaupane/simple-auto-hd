@@ -3,12 +3,12 @@
 Latest version: v2.0.4
 
 ### Updates:
-1. Added support for all international languages supported by YouTube
+1. Added support for all international languages supported by YouTube.
  Huge shoutout to [https://github.com/JensForstmann](https://github.com/JensForstmann)
  for raising the issue and sending the PR:
 [https://github.com/sameernyaupane/simple-auto-hd/issues/5](https://github.com/sameernyaupane/simple-auto-hd/issues/5)
 
-2. The quality toggle code has been changed to use Mutation Observer instead of Javascript Timeouts.
+2. The quality toggle code has been changed to use mutation observer instead of Javascript timeouts.
 It will be much more stable on instances of variable(faster/slower) internet speed.
 
 3. Redesigned the Popup Menu to make it much more intuitive.
