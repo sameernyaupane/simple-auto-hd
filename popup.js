@@ -3,8 +3,8 @@
     var theaterModeElement = document.getElementById('theater-mode');
     var preferredQualityElement = document.getElementById('preferred-quality');
 
-    var headerElem = document.querySelector('header');
-    headerElem.innerHTML += 'v' + version;
+    var headerElem = document.querySelector('header .version');
+    headerElem.innerText = 'v' + version;
 
     chrome.storage.sync.get(['preferredQuality'], function(result) { 
         if(result.preferredQuality !== undefined) {
