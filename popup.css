@@ -15,17 +15,16 @@ body {
 }
 
 a {
-  color: #fff;
-}
-
-hr {
-  color: #ddd;
+  color: #e1e1e1;
 }
 
 header {
-  padding: 8px 0 8px 0;
   margin:0px auto; 
   margin-bottom: 4px;
+}
+
+header .version {
+  font-weight: bold;
 }
 
 header h3 {
@@ -33,14 +32,45 @@ header h3 {
   font-size: 28px;
 }
 
+header img {
+  width: 72px;
+}
+
 section {
-  margin: 6 4 6 4px;
+  margin: 8 4 8 4px;
+  padding: 6px;
+}
+
+.border {
+  border: 2px solid #ababab;
+  border-radius: 4px;
 }
 
 section i {
   cursor: pointer;
   color: #282828;
   font-size: 20px;
+}
+
+section a {
+  font-size: 16px;
+}
+
+section div img {
+  width: 22px;
+  height: auto;
+  vertical-align: bottom;
+}
+
+section div svg {
+  width: 22px;
+  height: auto;
+  vertical-align: middle;
+}
+
+.footer {
+  border-top: 1px solid #ababab;
+  margin-top: 12px;
 }
 
 select {
@@ -61,9 +91,9 @@ select {
   margin: 5px;
   font-size: 30px;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .switcher input {
@@ -124,6 +154,7 @@ input.toggle:disabled + .switcher__indicator::after, input:disabled + .switcher_
   display: inline-block;
   vertical-align: middle;
   margin-top: 12px;
+  margin-bottom: 4px;
 }
 
 .custom-dropdown select {
@@ -136,8 +167,7 @@ input.toggle:disabled + .switcher__indicator::after, input:disabled + .switcher_
   margin: 0;
   border-radius: 3px;
   text-indent: 0.01px;
-  text-overflow: '';
-  -webkit-appearance: button; /* hide default arrow in chrome OSX */
+  appearance: none;
 }
 
 .custom-dropdown::before,
@@ -183,4 +213,6 @@ input.toggle:disabled + .switcher__indicator::after, input:disabled + .switcher_
 
 #info {
   color: #dcdc00;
+  font-weight: bold;
+  margin-bottom: 4px;
 }
