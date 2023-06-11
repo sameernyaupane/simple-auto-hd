@@ -216,3 +216,12 @@ input.toggle:disabled + .switcher__indicator::after, input:disabled + .switcher_
   font-weight: bold;
   margin-bottom: 4px;
 }
+
+.wrapper-enabled {
+  background: grey;
+  width: 100%;
+  position: fixed;
+  height: 100%;
+  top: 188px;
+  opacity: 0.6;
+}
