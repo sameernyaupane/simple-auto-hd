@@ -1,6 +1,14 @@
-## Simple Auto HD has been updated to v2.0.4!
+## Simple Auto HD has been updated to v2.0.5!
 
-Latest version: v2.0.4
+This chrome web store update includes both 2.0.4 and 2.0.5 updates at same time, rolled into one for convenience.
+
+Latest version: v2.0.5 
+### Updates:
+1. Fixed mutation observer issue in previous version to also use timeout for at least 100ms to make sure element is ready for manipulation.
+2. Added extension enable/disable feature from the popup menu.
+3. Added two way binding for theater mode. Toggling theater mode from YouTube page will also save the changes to the extension.
+
+Older version: v2.0.4 
 
 ### Updates:
 1. Added support for all international languages supported by YouTube.
