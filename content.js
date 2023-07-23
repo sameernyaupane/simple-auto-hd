@@ -288,11 +288,12 @@
 
         var targetItem;
 
+        var targetItems = document.querySelectorAll('.ytp-quality-menu .ytp-menuitem-label');
+        targetItems = Array.from(targetItems).filter(item => !item.innerHTML.includes("ytp-premium-label"));
+        
         if (preferredQuality === 'best-available') {
-            targetItem = document.querySelector('.ytp-quality-menu .ytp-menuitem-label');
+            targetItem = targetItems[0];
         } else {
-            var targetItems = document.querySelectorAll('.ytp-quality-menu .ytp-menuitem-label');
-
             targetItem = findTargetItem(preferredQuality, targetItems);
         }
 
