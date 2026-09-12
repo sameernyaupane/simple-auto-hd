@@ -16,6 +16,7 @@ function seedDefaults() {
 
 function openTab(url) {
   try {
+    if (!['http:', 'https:'].includes(new URL(url).protocol)) return;
     chrome.tabs.create({ url });
   } catch {
     /* the user can reach the page from the popup instead */
