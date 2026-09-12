@@ -1,7 +1,7 @@
 {
 	"manifest_version": 3,
 	"name": "Simple Auto HD (Open Source)",
-	"description": "Simple Auto HD quality selector for YouTube. Up to 8k/4k (60fps/50fps/48fps/30fps) supported. Theater mode.",
+	"description": "Pick your YouTube quality once and every video plays at it — up to 8K, plus theater mode. Works on Shorts and YouTube Music.",
 	"version": "2.1.0",
 	"author": "Sameer Nyaupane",
 	"minimum_chrome_version": "111",

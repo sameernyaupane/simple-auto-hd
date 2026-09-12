@@ -1,6 +1,6 @@
 ![Logo image](/icons/sahd-128.png)
 ## Simple Auto HD
-Simple Auto HD quality selector for YouTube. Up to 8k/4k (60fps/50fps/48fps/30fps) supported. Theater mode.
+Pick your YouTube quality once and every video plays at it — up to 8K, plus theater mode. Works on Shorts and YouTube Music.
 
 Pick a preferred quality once and every video plays at it — on watch pages and on
 Shorts. Quality is set through YouTube's own player API, so the settings menu
