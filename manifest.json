@@ -2,37 +2,76 @@
 	"manifest_version": 3,
 	"name": "Simple Auto HD (Open Source)",
 	"description": "Simple Auto HD quality selector for YouTube. Up to 8k/4k (60fps/50fps/48fps/30fps) supported. Theater mode.",
-	"version": "2.0.6",
+	"version": "2.1.0",
 	"author": "Sameer Nyaupane",
+	"minimum_chrome_version": "111",
 
-	"icons": { 
-		"16": "sahd-16.png",
-		"48": "sahd-48.png",
-		"128": "sahd-128.png"
+	"icons": {
+		"16": "icons/sahd-16.png",
+		"48": "icons/sahd-48.png",
+		"128": "icons/sahd-128.png"
 	},
 
-    "action": {
-        "default_title": "Simple Auto HD",
-        "default_icon": "sahd-16.png",
-        "default_popup": "popup.html"
-    },
+	"action": {
+		"default_title": "Simple Auto HD",
+		"default_icon": "icons/sahd-16.png",
+		"default_popup": "popup.html"
+	},
 
-    "background": {
-        "service_worker": "background.js"
-    },
+	"background": {
+		"service_worker": "background.js"
+	},
 
-	"content_scripts": [{
-		"matches": ["*://www.youtube.com/*"],
-		"exclude_globs": [
-			"*/embed/*",
-			"*/tv#/*",
-			"*/tv/*"
-		],
-		"all_frames": true,
-		"js": ["content.js"],
-		"run_at": "document_start"
-	}],
+	"content_scripts": [
+		{
+			"matches": [
+				"*://www.youtube.com/*",
+				"*://youtube.com/*",
+				"*://m.youtube.com/*",
+				"*://music.youtube.com/*"
+			],
+			"exclude_matches": [
+				"*://www.youtube.com/embed/*",
+				"*://www.youtube.com/live_chat*"
+			],
+			"exclude_globs": [
+				"*/embed/*",
+				"*/tv#/*",
+				"*/tv/*"
+			],
+			"all_frames": false,
+			"run_at": "document_start",
+			"world": "MAIN",
+			"js": ["main-agent.js"]
+		},
+		{
+			"matches": [
+				"*://www.youtube.com/*",
+				"*://youtube.com/*",
+				"*://m.youtube.com/*",
+				"*://music.youtube.com/*"
+			],
+			"exclude_matches": [
+				"*://www.youtube.com/embed/*",
+				"*://www.youtube.com/live_chat*"
+			],
+			"exclude_globs": [
+				"*/embed/*",
+				"*/tv#/*",
+				"*/tv/*"
+			],
+			"all_frames": false,
+			"run_at": "document_start",
+			"world": "ISOLATED",
+			"js": ["content.js"]
+		}
+	],
 
 	"permissions": ["storage"],
-	"host_permissions": ["*://www.youtube.com/*"]
+	"host_permissions": [
+		"*://www.youtube.com/*",
+		"*://youtube.com/*",
+		"*://m.youtube.com/*",
+		"*://music.youtube.com/*"
+	]
 }

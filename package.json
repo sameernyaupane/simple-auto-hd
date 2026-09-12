@@ -1,0 +1,24 @@
+{
+  "name": "simple-auto-hd",
+  "version": "2.1.0",
+  "description": "Simple Auto HD quality selector for YouTube.",
+  "author": "Sameer Nyaupane",
+  "license": "GPL-3.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "watch": "node scripts/build.mjs --watch",
+    "lint": "eslint .",
+    "format": "prettier --write \"**/*.{js,mjs,json,css,html,md}\"",
+    "test": "node --test \"test/**/*.test.js\"",
+    "package": "node scripts/build.mjs && node scripts/package.mjs"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.13.0",
+    "esbuild": "^0.24.0",
+    "eslint": "^9.13.0",
+    "globals": "^15.11.0",
+    "prettier": "^3.3.3"
+  }
+}

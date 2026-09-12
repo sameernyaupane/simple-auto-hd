@@ -1,27 +1,39 @@
-## Simple Auto HD has been updated to v2.0.5!
+## Simple Auto HD has been updated to v2.1.0!
 
-This chrome web store update includes both 2.0.4 and 2.0.5 updates at same time, rolled into one for convenience.
+This release rebuilds how the extension sets video quality. It now uses YouTube's
+own player API instead of opening the settings menu and clicking through it, so
+the menu no longer flickers on every video and the extension behaves the same in
+every interface language.
 
-Latest version: v2.0.5 
-### Updates:
-1. Fixed mutation observer issue in previous version to also use timeout for at least 100ms to make sure element is ready for manipulation.
-2. Added extension enable/disable feature from the popup menu.
-3. Added two way binding for theater mode. Toggling theater mode from YouTube page will also save the changes to the extension.
+Your existing settings carry over — there is nothing to reconfigure.
 
-Older version: v2.0.4 
+### Fixed
+1. Changing the quality setting while on the YouTube homepage, search results or a
+   channel page used to throw an error. YouTube now shows a hover-preview player
+   there, which the old code mistook for a real video.
+2. Choosing **Auto** on a non-English YouTube used to fail, because the extension
+   looked for the literal word "Auto" — which is "Automatisch" in German and
+   "自動" in Japanese.
+3. The same failure happened on slow connections, whenever the quality menu took
+   longer than a tenth of a second to appear. There is now a proper readiness
+   check and a retry.
+4. Quality is re-applied when YouTube reloads the player — autoplaying to the next
+   video, or coming back from an ad. Previously it was set once and then forgotten.
 
-### Updates:
-1. Added support for all international languages supported by YouTube.
- Huge shoutout to [https://github.com/JensForstmann](https://github.com/JensForstmann)
- for raising the issue and sending the PR:
-[https://github.com/sameernyaupane/simple-auto-hd/issues/5](https://github.com/sameernyaupane/simple-auto-hd/issues/5)
+### New
+1. **Shorts support**, with a toggle to turn it off.
+2. **Premium quality** — an opt-in toggle for YouTube's "1080p Premium"
+   enhanced-bitrate streams. Off by default.
+3. Works on `m.youtube.com` and `music.youtube.com`.
+4. The popup has been redesigned and now shows which quality it applied.
+5. A light/dark **Appearance** setting — leave it on Auto to follow your system,
+   or pick Light or Dark yourself.
+6. Toggling theater mode with the **`t`** key syncs back to the extension, not just
+   clicking the button.
 
-2. The quality toggle code has been changed to use mutation observer instead of Javascript timeouts.
-It will be much more stable on instances of variable(faster/slower) internet speed.
-
-3. Redesigned the Popup Menu to make it much more intuitive.
-
-4. Updated the extension logo to have white text instead of transparent one for better visibility.
+### Note
+This version needs Chrome 111 or later, and asks for permission to run on
+`m.youtube.com` and `music.youtube.com`.
 
 Check out the releases page here: [https://github.com/sameernyaupane/simple-auto-hd/releases](https://github.com/sameernyaupane/simple-auto-hd/releases).
 
