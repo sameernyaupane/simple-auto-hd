@@ -6,6 +6,7 @@ import {
   labelToToken,
   normalizeDigits,
   isPremiumEntry,
+  planApply,
   tokenRank,
   heightToToken,
   tokenToHeight,
@@ -74,7 +75,10 @@ test('unplayable entries are filtered out', () => {
 });
 
 test('the auto pseudo-entry is never a concrete target', () => {
-  const avail = [{ token: 'auto', label: 'Auto' }, { token: 'hd720', label: '720p' }];
+  const avail = [
+    { token: 'auto', label: 'Auto' },
+    { token: 'hd720', label: '720p' },
+  ];
   assert.equal(resolvePreferred('best-available', avail).token, 'hd720');
 });
 
@@ -84,12 +88,58 @@ test('premium excluded by default, included when opted in', () => {
     { token: 'hd1080', label: '1080p', playable: true },
     { token: 'hd720', label: '720p', playable: true },
   ];
-  assert.equal(resolvePreferred('1080p', avail).label, '1080p');
+  const standard = resolvePreferred('1080p', avail);
+  assert.equal(standard.label, '1080p');
+  // Declining Premium must also go through the menu: given only 'hd1080', a
+  // Premium account's player picks Premium itself.
+  assert.deepEqual(planApply(standard, avail), { action: 'menu' });
+  const premium = resolvePreferred('1080p', avail, { allowPremium: true });
+  assert.equal(premium.label, '1080p Premium');
+  // The token alone cannot tell Premium apart, so it must not go to the API.
+  assert.deepEqual(planApply(premium, avail), { action: 'menu' });
+});
+
+test('opted-in premium wins its tier whichever order the player lists it in', () => {
+  const avail = [
+    { token: 'hd1080', label: '1080p', playable: true },
+    { token: 'hd1080', label: '1080p Premium', formatType: 'PREMIUM', playable: true },
+  ];
   assert.equal(resolvePreferred('1080p', avail, { allowPremium: true }).label, '1080p Premium');
+  assert.equal(
+    resolvePreferred('best-available', avail, { allowPremium: true }).label,
+    '1080p Premium',
+  );
+  assert.equal(resolvePreferred('best-available', avail).label, '1080p');
+});
+
+test('issue #15: Auto never touches the player, even with premium allowed', () => {
+  const avail = [
+    { token: 'hd1080', label: '1080p Premium', formatType: 'PREMIUM', playable: true },
+    { token: 'hd1080', label: '1080p', playable: true },
+  ];
+  for (const allowPremium of [false, true]) {
+    assert.deepEqual(planApply(resolvePreferred('Auto', avail, { allowPremium })), {
+      action: 'none',
+    });
+  }
+});
+
+test('standard targets go to the player API by token', () => {
+  const target = resolvePreferred('720p', AVAIL);
+  assert.deepEqual(planApply(target, AVAIL), { action: 'api', token: 'hd720' });
+  // A Premium entry at another tier does not make 720p ambiguous.
+  const withPremium = [
+    { token: 'hd1080', label: '1080p Premium', formatType: 'PREMIUM' },
+    ...AVAIL,
+  ];
+  assert.deepEqual(planApply(target, withPremium), { action: 'api', token: 'hd720' });
+  assert.deepEqual(planApply(null), { action: 'none' });
 });
 
 test('a premium-only list still resolves when premium is opted out', () => {
-  const avail = [{ token: 'hd1080', label: '1080p Premium', formatType: 'PREMIUM', playable: true }];
+  const avail = [
+    { token: 'hd1080', label: '1080p Premium', formatType: 'PREMIUM', playable: true },
+  ];
   const r = resolvePreferred('1080p', avail, { allowPremium: false });
   assert.ok(r, 'must not leave the viewer worse off than YouTube default');
   assert.equal(r.token, 'hd1080');
@@ -112,8 +162,17 @@ test('malformed entries never throw', () => {
 
 test('every legacy popup value parses', () => {
   const legacy = [
-    'best-available', '4320p', '2160p', '1440p', '1080p',
-    '720p', '480p', '360p', '240p', '144p', 'Auto',
+    'best-available',
+    '4320p',
+    '2160p',
+    '1440p',
+    '1080p',
+    '720p',
+    '480p',
+    '360p',
+    '240p',
+    '144p',
+    'Auto',
   ];
   for (const v of legacy) {
     assert.doesNotThrow(() => parsePreference(v), v);

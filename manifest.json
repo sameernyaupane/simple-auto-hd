@@ -2,7 +2,7 @@
 	"manifest_version": 3,
 	"name": "Simple Auto HD (Open Source)",
 	"description": "Pick your YouTube quality once and every video plays at it — up to 8K, plus theater mode. Works on Shorts and YouTube Music.",
-	"version": "2.1.0",
+	"version": "2.1.1",
 	"author": "Sameer Nyaupane",
 	"minimum_chrome_version": "111",
 

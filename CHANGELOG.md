@@ -3,6 +3,22 @@
 All notable changes to this project are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.1.1] - 2026-10-26
+
+### Fixed
+- **Auto no longer hides "1080p Premium"** ([#15]). With the preference set to
+  Auto, the extension now leaves the player alone, so YouTube's quality menu is
+  the same as with the extension disabled. It used to call
+  `setPlaybackQualityRange('auto', 'auto')` on every video.
+- **The Premium toggle works again.** Premium and standard 1080p share the
+  player token `hd1080`, so the API path could not choose between them and a
+  Premium account got Premium whether the toggle was on or off. When a tier has
+  both entries, the quality is now set through the settings menu, which can.
+  With the toggle on, Premium is also preferred within its tier whatever order
+  YouTube lists it in.
+
+[#15]: https://github.com/sameernyaupane/simple-auto-hd/issues/15
+
 ## [2.1.0] - 2026-09-12
 
 The extension now sets quality through YouTube's player API instead of

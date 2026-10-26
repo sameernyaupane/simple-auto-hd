@@ -120,24 +120,55 @@ export function resolvePreferred(preference, available, { allowPremium = false }
   // preference rather than leaving the viewer worse off than YouTube's default.
   if (pool.length === 0) pool = all;
 
-  pool = pool.slice().sort((a, b) => tokenRank(a.token) - tokenRank(b.token));
+  // Premium and standard share a token. When the viewer opted in, put Premium
+  // first within its tier so it wins over the standard entry at the same height.
+  const premiumFirst = (a, b) => (allowPremium ? isPremiumEntry(b) - isPremiumEntry(a) : 0);
+  pool = pool.slice().sort((a, b) => tokenRank(a.token) - tokenRank(b.token) || premiumFirst(a, b));
+
+  const pick = (e, reason) => ({
+    token: e.token,
+    label: e.label ?? e.token,
+    reason,
+    formatType: e.formatType ?? null,
+  });
 
   if (mode === 'auto') {
     return { token: AUTO, label: 'Auto', reason: 'auto' };
   }
 
   if (mode === 'best') {
-    const best = pool[0];
-    return { token: best.token, label: best.label ?? best.token, reason: 'best' };
+    return pick(pool[0], 'best');
   }
 
   const exact = pool.find(e => tokenToHeight(e.token) === height);
-  if (exact) return { token: exact.token, label: exact.label ?? exact.token, reason: 'exact' };
+  if (exact) return pick(exact, 'exact');
 
   const lower = pool.find(e => tokenToHeight(e.token) <= height);
-  if (lower) return { token: lower.token, label: lower.label ?? lower.token, reason: 'laddered' };
+  if (lower) return pick(lower, 'laddered');
 
   // Everything on offer is above the request (e.g. 144p asked of a 1080p-floor stream).
-  const floor = pool[pool.length - 1];
-  return { token: floor.token, label: floor.label ?? floor.token, reason: 'floor' };
+  return pick(pool[pool.length - 1], 'floor');
+}
+
+/**
+ * How a resolved target reaches the player.
+ *
+ *   none - Auto: leave the player alone, exactly as if the extension were off.
+ *          Calling setPlaybackQualityRange('auto', 'auto') is not a no-op; it
+ *          overrides YouTube's own state (issue #15).
+ *   menu - the target's tier has both a Premium and a standard entry. The player
+ *          API takes only a token, which both share, so the player picks one
+ *          itself (on a Premium account, Premium). Only the menu row can choose
+ *          either side, so this covers Premium wanted and Premium declined.
+ *   api  - everything else.
+ */
+export function planApply(target, available = []) {
+  if (!target) return { action: 'none' };
+  if (target.token === AUTO) return { action: 'none' };
+  const sameTier = (Array.isArray(available) ? available : []).filter(
+    e => e?.token === target.token,
+  );
+  const ambiguous = sameTier.some(isPremiumEntry) && sameTier.some(e => !isPremiumEntry(e));
+  if (isPremiumEntry(target) || ambiguous) return { action: 'menu' };
+  return { action: 'api', token: target.token };
 }

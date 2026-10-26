@@ -10,7 +10,7 @@
  *   - a null-safe decision function, so nothing ever clicks a missing element.
  */
 import { loadSettings, saveSettings, watchSettings, QUALITY_KEYS } from '../lib/settings.js';
-import { resolvePreferred } from '../lib/quality.js';
+import { resolvePreferred, planApply } from '../lib/quality.js';
 import { log, setDebug } from '../lib/log.js';
 import {
   WAIT_READY,
@@ -44,6 +44,8 @@ function start() {
   let adActive = false;
   let lastApplyAt = 0;
   let lastRequested = null;
+  // True once this page has pinned the player to a concrete quality range.
+  let rangePinned = false;
   let lastStatus = { source: 'none', applied: null, reason: null };
   let debounceTimer = null;
 
@@ -104,15 +106,42 @@ function start() {
       return;
     }
 
+    let plan = planApply(target, ready.available);
+    // Off the desktop watch page there is no menu to drive, so settle for
+    // whichever entry the player picks at that height.
+    if (plan.action === 'menu' && !isDesktopWatch()) plan = { action: 'api', token: target.token };
+
+    if (plan.action === 'none') {
+      lastRequested = null;
+      lastStatus = { source: 'api', applied: target.label, reason: target.reason };
+      // Only undo a range we set ourselves (e.g. the preference just changed
+      // from 1080p to Auto). Otherwise leave YouTube's player untouched.
+      if (rangePinned) {
+        rangePinned = false;
+        lastApplyAt = Date.now();
+        await request(APPLY_QUALITY, { token: 'auto' });
+      }
+      log.debug('auto: player left alone', target);
+      return;
+    }
+
+    if (plan.action === 'menu') {
+      lastRequested = target.token;
+      await runDomFallback();
+      log.debug('premium tier via menu', target, lastStatus);
+      return;
+    }
+
     lastApplyAt = Date.now();
-    lastRequested = target.token;
-    const res = await request(APPLY_QUALITY, { token: target.token });
+    lastRequested = plan.token;
+    rangePinned = true;
+    const res = await request(APPLY_QUALITY, { token: plan.token });
     if (cycle !== cycleId) return;
 
     lastStatus = { source: 'api', applied: target.label, reason: target.reason };
     log.debug('applied', target, '->', res?.actual);
 
-    const landed = target.token === 'auto' || res?.actual === target.token;
+    const landed = res?.actual === plan.token;
     if (!landed && attempts < MAX_ATTEMPTS) {
       const backoff = 300 * 2 ** attempts;
       attempts += 1;
